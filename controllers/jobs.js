@@ -5,8 +5,6 @@ const { BadRequestError, NotFoundError, ConflictError } = require("../errors");
 const getAllJobs = async (req, res) => {
   const jobs = await Job.find({ createdBy: req.user.id });
 
-  if (!jobs.length) throw new NotFoundError("No jobs have been created yet");
-
   res.status(StatusCodes.OK).json({ jobs, count: jobs.length });
 };
 
